@@ -18,7 +18,7 @@ class Question extends Component {
     }
   }
 
-  /* where should we navigate to next? */
+  /* Button link: where should we navigate to next? */
   generateToLink = () => {
     if (this.props.currentQuestion < this.props.questionArrLength) {
       return `/question/${this.props.currentQuestion + 1}`
@@ -41,6 +41,7 @@ class Question extends Component {
     )
   }
 
+  /* update state  */
   updateUserAnswer = (updatedUserAnswer) => {
     this.setState({
       userAnswer: updatedUserAnswer
@@ -62,7 +63,7 @@ class Question extends Component {
     let userSelectedAnswer = e.target.value;
     let indexOfUserSelectedAnswer = answersArr.indexOf(userSelectedAnswer);
 
-    /* update userAnswer */
+    /* update userAnswer w/ the index */
     /* wasn't updating if user chose '0' bc 0 is falsey */
      if (indexOfUserSelectedAnswer >= 0) {
       let updatedUserAnswer = indexOfUserSelectedAnswer;
@@ -81,10 +82,10 @@ class Question extends Component {
 
   /* update userSelectionArr with array */
   handleCheckboxChange = (e, i) => {
-    /* copy the arr */
+    /* copy the arr so that we don't manipulate state directly */
     let userSelectionArr = [].concat(this.state.userSelectionArr);
 
-    /* user has checked a box: add to arr */
+    /* user has checked a box: add selected to arr */
     if (e.target.checked) {
       userSelectionArr.push(i);
     } else { /* user has unchecked box; remove from arr */
@@ -92,10 +93,10 @@ class Question extends Component {
       userSelectionArr.splice(indexToRemove, 1);
     }
 
-    /* sort the array in asc order */
+    /* sort the array in asc order so that it will match the answer */
     const sortedUserSelectionArr = userSelectionArr.sort(function(a,b){ return a-b; });
 
-    /* update the val of userSelectionArr on state */
+    /* update the val of userSelectionArr state */
     this.setState({
       userSelectionArr: sortedUserSelectionArr
     });
@@ -148,14 +149,14 @@ class Question extends Component {
     }
   }
 
-  /* triggers: crunch answer, navigate fxn, & resets state to null */
+  /* triggers: crunch answer, navigate fxn, & resets userAnswer to null */
   resetAndNavigate = () => {
     this.props.checkAnswerAndNavigateFxn(this.state.userAnswer, this.state.userSelectionArr);
     this.setState({ userAnswer: null });
   }
 
   render(){
-    /* props not immediately available while App fetches data */
+    /* props not immediately available while App fetches data, so show loader */
     if (!this.props.questionArr) {
       return this.renderLoader();
     }

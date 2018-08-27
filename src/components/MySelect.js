@@ -10,6 +10,7 @@ class MySelect extends Component {
     }
   }
 
+  /* so the dropdown will reflect the chosen answer: */
   updateUserChoice = (e) => {
     this.setState({
       chosenSelect: e.target.value

@@ -28,11 +28,11 @@ class App extends Component {
     return `/question/${this.state.currentQuestion}`;
   }
 
-  /* checks if user answer is correct */
+  /* checks if user answer matches actual answer */
   crunchAnswer = (userSelectedAnswer, userSelectionArr) => {
     const correctAnswer = this.state.questionArr[this.state.currentQuestion - 1].correct;
 
-    /* special for checkboxes: */
+    /* special for checkboxes array: */
     if (Array.isArray(correctAnswer)) {
       /* stringify, then compare */
       if (JSON.stringify(correctAnswer) === JSON.stringify(userSelectionArr)) {
@@ -41,7 +41,8 @@ class App extends Component {
       } else {
         this.incorrectScoreToast();
       }
-    } else if (correctAnswer === userSelectedAnswer) { /* everything else */
+    /* everything else: */
+    } else if (correctAnswer === userSelectedAnswer) {
       this.correctScoreToast();
       this.increaseScore();
     } else {

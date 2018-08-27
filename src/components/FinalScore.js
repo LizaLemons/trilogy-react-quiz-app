@@ -27,7 +27,7 @@ class FinalScore extends Component {
           Number of wrong answers: {this.state.numWrong}
         </p>
         <p>
-          FinalScore: {this.props.currentScore}
+          Final Score: {this.props.currentScore}
         </p>
       </div>
     )
