@@ -1,12 +1,8 @@
 
-import React, {Component} from 'react';
+import React from 'react';
 
-class NoMatch extends Component {
-  render(){
-    return(
-      <div>Sorry, I couldn't find that page.</div>
-    )
-  }
-}
+const NoMatch = props => (
+  <div>Sorry, I couldn't find that page.</div>
+);
 
 export default NoMatch;
