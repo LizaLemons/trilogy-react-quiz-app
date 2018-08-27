@@ -17,14 +17,14 @@
 ### Sitemap of components:
 
 - App
-  - Home
+  - Home (FSC)
   - Question
     - Radios (FSC)
     - Checkboxes (FSC)
     - Dropdowns
     - Text areas (FSC)
-  - Final Score  
-  - No Match
+  - Final Score (FSC)
+  - No Match (FSC)
 
 
 ---
